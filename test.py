@@ -6,7 +6,7 @@ import main
 class SimpleTest(unittest.TestCase):
 
     def test_fun_msg(self):
-        self.assertIn(main.get_fun_msg(), main.MSGS)
+        self.assertTrue(main.get_fun_msg() in main.MSGS)
 
 if __name__ == '__main__':
     unittest.main()
