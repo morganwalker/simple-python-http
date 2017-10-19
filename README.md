@@ -15,7 +15,7 @@ To host the flask app we ask that you use Gunicorn inside the container.
 
 ### Requirements
 
- * Create a working docker image.
+ * Create a working docker image that runs the flask app using Gunicorn.
  * Docker image should take in environment variables to configure port and number of workers.
  * Setup a Travis CI environment
  * Tests should run inside the docker container in the CI environment.
