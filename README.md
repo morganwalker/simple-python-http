@@ -40,7 +40,7 @@ To host the flask app we ask that you use Gunicorn inside the container.
 
 ### Bonus Points
 
- * [ ] Use a small base image(like alpine) -- **plan on doing this**
+ * [x] Use a small base image(like alpine)
  * [ ] Produce a smaller image with multistage builds
  * [ ] Provide the yaml for creating a Kubernetes Deployment -- **plan on looking into this**
  * [ ] Provide a proof of concept for continous deployment to kubernetes -- **plan on attempting this**

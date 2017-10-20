@@ -1,9 +1,6 @@
-# gunicorn-flask
-FROM ubuntu:14.04
+# gunicorn-flask-alpine
+FROM python:2.7-alpine
 MAINTAINER Morgan Walker <j.morganwalker@gmail.com>
-
-# Let the conatiner know that there is no tty
-ENV DEBIAN_FRONTEND noninteractive
 
 # Define build variables for port exposure. Bind to port if defined during build, otherwise default to:
 ARG PORT=8000
@@ -12,8 +9,7 @@ ARG PORT=8000
 ENV WORKERS=2
 ENV PORT=8000
 
-RUN apt-get update
-RUN apt-get install -y python python-pip python-virtualenv gunicorn
+RUN apk update
 
 # Setup flask application
 RUN mkdir -p /deploy/app
