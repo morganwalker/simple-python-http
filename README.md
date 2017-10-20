@@ -23,13 +23,13 @@ To host the flask app we ask that you use Gunicorn inside the container.
 
  1. [x] Fork the this repository.
  2. [x] Create a dockerfile for the repository
- 3. [ ] Setup tests on Travis CI which run in that **test.py is running but I'd like to add another one**
+ 3. [ ] Setup tests on Travis CI which run in that -- **test.py is running but I'd like to add another one**
  4. [x] Travis CI should produce a image and push that to Docker Hub(just a free public repo).
  5. [x] Submit link to your github repository, include the docker hub link in your repository.
 
 ### Requirements
 
- * [ ] Create a working docker image that runs the flask app using Gunicorn **everything fires up properly but I'm not able to hit the site on http://0.0.0.0:8000**
+ * [ ] Create a working docker image that runs the flask app using Gunicorn -- **everything fires up properly but I'm not able to hit the site on http://0.0.0.0:8000**
  * [x] Docker image should take in environment variables to configure port and number of workers.
  * [x] Setup a Travis CI environment
  * [x] Tests should run inside the docker container in the CI environment.
@@ -38,8 +38,8 @@ To host the flask app we ask that you use Gunicorn inside the container.
 
 ### Bonus Points
 
- * [ ] Use a small base image(like alpine) **plan on doing this**
+ * [ ] Use a small base image(like alpine) -- **plan on doing this**
  * [ ] Produce a smaller image with multistage builds
- * [ ] Provide the yaml for creating a Kubernetes Deployment **plan on looking into this**
- * [ ] Provide a proof of concept for continous deployment to kubernetes **plan on attempting this**
+ * [ ] Provide the yaml for creating a Kubernetes Deployment -- **plan on looking into this**
+ * [ ] Provide a proof of concept for continous deployment to kubernetes -- **plan on attempting this**
  * [ ] Create python tooling for developers to live reload the application
