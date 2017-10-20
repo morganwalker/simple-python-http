@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import os
+import logging
 
 from flask import Flask
 from random import randint
+
+logger = logging.getLogger(__name__)
+hdlr = logging.FileHandler('/deploy/app/main.log')
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr) 
+logger.setLevel(logging.INFO)
 
 app = Flask(__name__)
 

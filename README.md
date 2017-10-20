@@ -4,14 +4,16 @@
 
 ### Firing it up locally!
 
-* docker-machine create -d virtualbox default
-* docker-machine ls #lists the VM
+* docker-machine create -d virtualbox default #start the docker machine
+* docker-machine ls #lists the docker machine (not the IP address listed in the URL)
 * docker-machine env default #lists the env vars
 * eval $(docker-machine env default)  #copy these contents into ~/.bash_profile
 * source ~/.bash_profile #adds the env vars so you don't need to restart your terminal (may need to add to ~/.bashrc)
 * env | grep DOCKER #confirm the env vars are set
 * docker build --build-arg PORT=8001 -t flask . #if you want to change the exposed port
-* docker run -e PORT=8001 -e WORKERS=5 -p 8001:8001 -t flask #if you want to change the workers and bind port
+* docker run -e PORT=8001 -e WORKERS=5 -p 8001:8001 --name flask1 -d flask #if you want to change the workers and bind port
+* docker exec -i -t flask1 /bin/sh #connect to running container
+* Navigate to app at http://192.168.99.100:8001/
 
 
 ### Overview
@@ -31,7 +33,7 @@ To host the flask app we ask that you use Gunicorn inside the container.
 
 ### Requirements
 
- * [ ] Create a working docker image that runs the flask app using Gunicorn -- **everything fires up properly but I'm not able to hit the site on http://0.0.0.0:8000**
+ * [x] Create a working docker image that runs the flask app using Gunicorn
  * [x] Docker image should take in environment variables to configure port and number of workers.
  * [x] Setup a Travis CI environment
  * [x] Tests should run inside the docker container in the CI environment.
