@@ -7,7 +7,7 @@ from flask import Flask
 from random import randint
 
 logger = logging.getLogger(__name__)
-hdlr = logging.FileHandler('/deploy/app/main.log')
+hdlr = logging.FileHandler('/var/tmp/main.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr) 
