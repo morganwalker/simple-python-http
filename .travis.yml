@@ -1,4 +1,6 @@
 language: python
+services:
+    - docker
 python:
   - "2.7"
 cache: pip
@@ -6,3 +8,10 @@ install:
   - pip install -r requirements.txt
 script:
   - python test.py
+before_deploy:
+    - docker build -t jmorganwalker/flask:$TRAVIS_TAG .
+deploy:
+    provider: script
+    script: deploy.sh
+    on:
+        tags: true
