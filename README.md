@@ -1,3 +1,15 @@
+### Firing it up locally!
+
+* docker-machine create -d virtualbox default
+* docker-machine ls #lists the VM
+* docker-machine env default #lists the env vars
+* eval $(docker-machine env default)  #copy these contents into ~/.bash_profile
+* source ~/.bash_profile #adds the env vars so you don't need to restart your terminal (may need to add to ~/.bashrc)
+* env | grep DOCKER #confirm the env vars are set
+* docker build --build-arg PORT=8001 -t flask .
+* docker run -e PORT=8001 -e WORKERS=5 -p 8001:8001 -t flask
+
+
 ## Overview
 
 In this test project we have a simple flask app that we would like you to wrap in a container, and test in that same container
