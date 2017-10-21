@@ -4,7 +4,7 @@
 
 ### Firing it up locally!
 
-* docker-machine create -d virtualbox default #start the docker machine
+* docker-machine create -d virtualbox default #create the docker machine
 * docker-machine ls #lists the docker machine (not the IP address listed in the URL)
 * docker-machine env default #lists the env vars
 * eval $(docker-machine env default)  #copy these contents into ~/.bash_profile
@@ -14,6 +14,14 @@
 * docker run -e PORT=8001 -e WORKERS=5 -p 8001:8001 --name flask1 -d flask #if you want to change the workers and bind port
 * docker exec -i -t flask1 /bin/sh #connect to running container
 * Navigate to app at http://192.168.99.100:8001/
+
+## Multi-stage build prerequisites
+
+Docker client and server/machine versions need to be 17.06+
+
+* docker version #determine client and machine versions
+* docker-machine upgrade default #upgrade the docker machine
+* Check for updates via the Docker for Mac menu item
 
 
 ### Overview

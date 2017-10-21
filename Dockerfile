@@ -9,8 +9,6 @@ ARG PORT=8000
 ENV WORKERS=2
 ENV PORT=8000
 
-RUN apk update
-
 # Setup flask application
 RUN mkdir -p /deploy/app
 WORKDIR /deploy/app
