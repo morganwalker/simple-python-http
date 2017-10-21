@@ -54,4 +54,5 @@ To host the flask app we ask that you use Gunicorn inside the container.
  * [ ] Produce a smaller image with multistage builds
  * [ ] Provide the yaml for creating a Kubernetes Deployment -- **plan on looking into this**
  * [ ] Provide a proof of concept for continous deployment to kubernetes -- **plan on attempting this**
- * [ ] Create python tooling for developers to live reload the application
+ * [x] Create python tooling for developers to live reload the application -- **can reload gunicorn with** ```docker exec -i -t flask1 /bin/sh -c '/bin/sh /deploy/app/restart_gunicorn.sh'```
+   * I understand that I didn't create python tooling for this so I tried to think outside of the box.  My first approach was to start gunicorn with `--reload`, which will restart the workers when code changes, and start the container with `docker run -p 8000:8000 -v $DEV_ROOT/simple-python-http:/deploy/app --name flask1 -d flask`, which will mount the local filesystem to the app's directory.  That way a dev could make changes locally and the app within the container would restart the workers.  However, there are known issues with the host file changes not actually making it into the container when using Virtualbox and Docker for Mac.  So, I went with an inelegant solution of restarting gunicorn from the command line.

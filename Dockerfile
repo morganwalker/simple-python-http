@@ -18,4 +18,4 @@ COPY main.py /deploy/app/main.py
 EXPOSE ${PORT}
 
 # Start gunicorn
-CMD gunicorn -w ${WORKERS} -b 0.0.0.0:${PORT} main:app
+CMD gunicorn --reload -p /tmp/gunicorn.pid -w ${WORKERS} -b 0.0.0.0:${PORT} main:app
