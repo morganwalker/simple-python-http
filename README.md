@@ -1,5 +1,7 @@
 ![Travis](https://travis-ci.org/morganwalker/simple-python-http.svg?branch=master)
 
+![Cloud 66](https://app.cloud66.com/stacks/badge/083e4abfe0e2a12ef2add83920d2793e.svg)
+
 [Docker Hub](https://hub.docker.com/r/jmorganwalker/simple-python-http/)
 
 ### Firing it up locally!
