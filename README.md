@@ -54,7 +54,7 @@ To host the flask app we ask that you use Gunicorn inside the container.
      * `docker-machine upgrade default` #upgrade the docker machine
      * Check for updates via the Docker for Mac menu item
      * I've grasped how to accomplish this using `FROM as base` and `FROM base` to make the final container smaller, but am still working through how to chop them up.
- * [x] Provide the yaml for creating a Kubernetes Deployment -- **deployment and service successfully fires up; still working on networking**
+ * [x] Provide the yaml for creating a Kubernetes Deployment
     1. `brew install kubectl`
     2. `kubectl version` #to verify version
     3. `kubectl cluster-info` #verify cluster is running
@@ -72,6 +72,9 @@ To host the flask app we ask that you use Gunicorn inside the container.
     15. `docker ps` #show both Flask containers running
     16. `kubectl proxy` #create a connection between our host (the online terminal) and the Kubernetes cluster
     17. Clean up with `kubectl delete services flask-service` and `kubectl delete deployment flask-deployment`
- * [ ] Provide a proof of concept for continous deployment to kubernetes -- **WIP**
+ * [x] Provide a proof of concept for continous deployment to kubernetes
+   * As I stated on our phone call, Teachstone uses Cloud 66.  C66 has a healthy Kubernetes integration. [![Cloud 66 with Kubernetes](http://img.youtube.com/vi/zg7G9B_E2SQ/0.jpg)](http://www.youtube.com/watch?v=zg7G9B_E2SQ)
+   * I fired up a stack with our project and you can view it [here](http://dockerhost.testing-943943.c66.me/)
+   * The pipeline: commit to master > trigger TravisCI build > successful build triggers c66 deployment w/ new code
  * [x] Create python tooling for developers to live reload the application -- **can reload gunicorn with** ```docker exec -i -t flask1 /bin/sh -c '/bin/sh /deploy/app/restart_gunicorn.sh'```
    * I understand that I didn't create python tooling for this so I tried to think outside of the box.  My first approach was to start gunicorn with `--reload`, which will restart the workers when code changes, and start the container with `docker run -p 8000:8000 -v $DEV_ROOT/simple-python-http:/deploy/app --name flask1 -d flask`, which will mount the local filesystem to the app's directory.  That way a dev could make changes locally and the app within the container would restart the workers.  However, there are known issues with the host file changes not actually making it into the container when using Virtualbox and Docker for Mac.  So, I went with an inelegant solution of restarting gunicorn from the command line.
