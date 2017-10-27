@@ -14,7 +14,7 @@
 6. `env | grep DOCKER` #confirm the env vars are set
 7. `docker build --build-arg PORT=8001 -t flask .` #if you want to change the exposed port
 8. `docker run -e PORT=8001 -e WORKERS=5 -p 8001:8001 --name flask1 -d flask` #if you want to change the workers and bind port
-9. `docker exec -i -t flask1 /bin/sh` #connect to running container
+9. `docker exec -it flask1 /bin/sh` #connect to running container
 10. Navigate to app at http://192.168.99.100:8001/
 ***
 
@@ -30,7 +30,7 @@ To host the flask app we ask that you use Gunicorn inside the container.
 
  1. [x] Fork the this repository.
  2. [x] Create a dockerfile for the repository
- 3. [ ] Setup tests on Travis CI which run in that -- **test.py is running but I'd like to add another one**
+ 3. [x] Setup tests on Travis CI which run in that
  4. [x] Travis CI should produce a image and push that to Docker Hub(just a free public repo).
  5. [x] Submit link to your github repository, include the docker hub link in your repository.
 ***
