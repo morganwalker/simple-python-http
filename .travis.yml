@@ -1,19 +1,19 @@
 language: python
-services:
-    - docker
 python:
   - "2.7"
-cache: pip
+services:
+  - docker
 install:
+  - docker build -t flask .
+  - docker run -p 8000:8000 --name flask1 -d flask
+before_script:
   - pip install -r requirements.txt
 script:
+  - docker ps | grep -q flask
   - python test.py
 after_success:
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  - export REPO=jmorganwalker/simple-python-http
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
-  - docker build -f Dockerfile -t $REPO:$COMMIT .
-  - docker tag $REPO:$COMMIT $REPO:$TAG
-  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
-  - docker push $REPO
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push jmorganwalker/simple-python-http;
+    fi
   - curl -X POST -d "" $CLOUD66_PRODUCTION_REDEPLOYMENT_URL
