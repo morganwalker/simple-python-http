@@ -15,6 +15,7 @@ WORKDIR /deploy/app
 COPY requirements.txt /deploy/app/requirements.txt
 RUN pip install -r requirements.txt
 COPY main.py /deploy/app/main.py
+COPY test.py /deploy/app/test.py
 EXPOSE ${PORT}
 
 # Start gunicorn

@@ -1,19 +1,15 @@
 language: python
-python:
-  - "2.7"
 services:
   - docker
 install:
   - docker build -t flask .
   - docker run -p 8000:8000 --name flask1 -d flask
-before_script:
-  - pip install -r requirements.txt
 script:
   - docker ps | grep -q flask
-  - python test.py
+  - docker exec -it flask1 python /deploy/app/test.py
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push jmorganwalker/simple-python-http;
+    docker push $DOCKER_REPOSITORY;
     fi
   - curl -X POST -d "" $CLOUD66_PRODUCTION_REDEPLOYMENT_URL
